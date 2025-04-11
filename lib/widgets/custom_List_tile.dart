@@ -11,6 +11,7 @@ class CustomListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Dismissible(
       key: ValueKey(expense.id),
+      background: Container(color: Colors.red),
       child: ListTile(
         tileColor: kColorScheme.secondaryContainer,
         onTap: () {},
