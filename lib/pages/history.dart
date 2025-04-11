@@ -6,7 +6,12 @@ class History extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('History')),
-      body: Text('List of Expenses'),
+      body: ListView.builder(
+        itemCount: 5,
+        itemBuilder: (ctx, index) {
+          return ListTile(title: Text('item 1'));
+        },
+      ),
     );
   }
 }

@@ -2,16 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:money_view/main.dart';
 
 class CustomTextInput extends StatelessWidget {
-  CustomTextInput({
+  final TextEditingController textController;
+  final String labelText;
+  final String? hintTextInput;
+  final TextInputType? keyboard;
+  const CustomTextInput({
     super.key,
     required this.textController,
     required this.labelText,
     this.hintTextInput,
+    this.keyboard,
   });
-
-  final TextEditingController textController;
-  final String labelText;
-  String? hintTextInput;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,7 @@ class CustomTextInput extends StatelessWidget {
       cursorHeight: 30,
       controller: textController,
 
-      keyboardType: TextInputType.name,
+      keyboardType: keyboard ?? TextInputType.name,
       style: Theme.of(
         context,
       ).textTheme.bodyMedium!.copyWith(color: Colors.black),
