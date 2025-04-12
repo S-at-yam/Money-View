@@ -25,7 +25,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final expenseProvider = Provider.of<ExpenseProvider>(context);
-    final recentExpenses = expenseProvider.expenses.reversed.take(7).toList();
+    final recentExpenses = expenseProvider.expenses.take(7).toList();
 
     return Scaffold(
       appBar: AppBar(
@@ -45,11 +45,35 @@ class _HomePageState extends State<HomePage> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              const SizedBox(height: 4),
               Container(
-                height: MediaQuery.of(context).size.height * 0.25,
-                width: MediaQuery.of(context).size.width * 0.97,
-                color: kColorScheme.primary.withAlpha(70),
+                height: MediaQuery.of(context).size.height * 0.28,
+                width: MediaQuery.of(context).size.width * 0.95,
+                //color: kColorScheme.onPrimaryFixedVariant.withAlpha(70),
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [
+                      const Color.fromARGB(255, 4, 65, 95),
+                      const Color.fromARGB(255, 36, 122, 36),
+                    ],
+                    begin: Alignment.bottomLeft,
+                    end: Alignment.topRight,
+                  ),
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: const [
+                    BoxShadow(
+                      color: Colors.black26,
+                      offset: Offset(4, 4),
+                      blurRadius: 8,
+                      spreadRadius: 1,
+                    ),
+                    BoxShadow(
+                      color: Colors.white54,
+                      offset: Offset(-4, -4),
+                      blurRadius: 8,
+                      spreadRadius: 1,
+                    ),
+                  ],
+                ),
                 child: Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: Column(
@@ -83,11 +107,37 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
-              const SizedBox(height: 8),
+              const SizedBox(height: 10),
               Container(
-                height: MediaQuery.of(context).size.height * 0.535,
-                width: MediaQuery.of(context).size.width * 0.97,
-                color: kColorScheme.secondary,
+                height: MediaQuery.of(context).size.height * 0.50,
+                width: MediaQuery.of(context).size.width * 0.95,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [
+                      const Color.fromARGB(255, 121, 163, 184),
+                      const Color.fromARGB(255, 216, 46, 165),
+                    ],
+                    begin: Alignment.bottomLeft,
+                    end: Alignment.topRight,
+                  ),
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: const [
+                    BoxShadow(
+                      color: Colors.black26,
+                      offset: Offset(4, 4),
+                      blurRadius: 8,
+                      spreadRadius: 1,
+                    ),
+                    BoxShadow(
+                      color: Colors.white54,
+                      offset: Offset(-4, -4),
+                      blurRadius: 8,
+                      spreadRadius: 1,
+                    ),
+                  ],
+                ),
+
+                // color: Colors.white,
                 child: Column(
                   children: [
                     const Padding(
@@ -97,8 +147,9 @@ class _HomePageState extends State<HomePage> {
                         child: Text(
                           'Recent Expenses',
                           style: TextStyle(
-                            fontSize: 30,
+                            fontSize: 25,
                             fontWeight: FontWeight.bold,
+                            color: Color.fromARGB(255, 103, 58, 183),
                           ),
                         ),
                       ),

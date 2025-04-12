@@ -5,8 +5,9 @@ import 'package:money_view/pages/update_expense.dart';
 
 class CustomListTile extends StatelessWidget {
   final Expense expense;
+  final Color? listColor;
 
-  const CustomListTile({super.key, required this.expense});
+  const CustomListTile({super.key, this.listColor, required this.expense});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +15,7 @@ class CustomListTile extends StatelessWidget {
       key: ValueKey(expense.id),
       background: Container(color: Colors.red),
       child: ListTile(
-        tileColor: kColorScheme.secondaryContainer,
+        tileColor: listColor,
         onTap: () {
           Navigator.of(
             context,
@@ -28,14 +29,14 @@ class CustomListTile extends StatelessWidget {
             Text(
               expense.dateDay,
               style: TextStyle(
-                color: kColorScheme.onSecondaryContainer,
+                color: Color.fromARGB(255, 255, 167, 38),
                 fontSize: 18,
               ),
             ),
             Text(
               expense.dateMonth,
               style: TextStyle(
-                color: kColorScheme.onSecondaryContainer,
+                color: Color.fromARGB(255, 255, 167, 38),
                 fontSize: 15,
               ),
             ),
@@ -53,7 +54,7 @@ class CustomListTile extends StatelessWidget {
         trailing: Text(
           '₹${expense.amount}',
           style: TextStyle(
-            color: kColorScheme.onSecondaryContainer,
+            color: Color.fromARGB(255, 33, 33, 33),
             fontSize: 15,
           ),
         ),

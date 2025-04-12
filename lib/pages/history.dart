@@ -25,7 +25,7 @@ class _HistoryState extends State<History> {
   @override
   Widget build(BuildContext context) {
     final expenseProvider = Provider.of<ExpenseProvider>(context);
-    final finExpenses = expenseProvider.expenses.reversed;
+    // final finExpenses = expenseProvider.expenses.reversed;
 
     return Scaffold(
       appBar: AppBar(title: Text('History')),
@@ -45,7 +45,7 @@ class _HistoryState extends State<History> {
             itemBuilder: (ctx, index) {
               return Padding(
                 padding: const EdgeInsets.fromLTRB(10, 3, 8, 2),
-                child: CustomListTile(expense: finExpenses.toList()[index]),
+                child: CustomListTile(expense: expenseProvider.expenses[index]),
               );
             },
           );

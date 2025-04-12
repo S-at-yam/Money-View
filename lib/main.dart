@@ -5,7 +5,7 @@ import 'package:money_view/tab.dart';
 import 'package:provider/provider.dart';
 
 var kColorScheme = ColorScheme.fromSeed(
-  seedColor: const Color.fromARGB(255, 8, 131, 139),
+  seedColor: const Color.fromARGB(255, 46, 139, 187),
 );
 
 void main() {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:money_view/main.dart';
-import 'package:money_view/pages/add_new.dart';
+
 import 'package:money_view/pages/charts.dart';
 import 'package:money_view/pages/history.dart';
 

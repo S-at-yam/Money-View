@@ -13,6 +13,8 @@ class ExpenseProvider with ChangeNotifier {
     final data = await _dbHelper.getExpenses();
     _expenses.clear();
     _expenses.addAll(data);
+
+    _expenses.sort((a, b) => b.date.compareTo(a.date));
     notifyListeners();
   }
 
