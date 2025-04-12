@@ -33,7 +33,7 @@ class Expense {
   final String title;
   final Category category;
   final String? description;
-  final String id;
+  final String? id;
 
   Expense({
     required this.date,
@@ -41,6 +41,7 @@ class Expense {
     required this.title,
     required this.category,
     this.description,
+    String? id,
   }) : id = uuid.v4();
 
   String get dateDay {
@@ -50,5 +51,28 @@ class Expense {
   String get dateMonth {
     String monthName = DateFormat('MMM').format(date);
     return monthName;
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'title': title,
+      'amount': amount,
+      'date': date.toIso8601String(),
+      'category': category.name,
+      'description': description,
+    };
+  }
+
+  // Create object from Map from SQLite
+  factory Expense.fromMap(Map<String, dynamic> map) {
+    return Expense(
+      id: map['id'],
+      title: map['title'],
+      amount: map['amount'],
+      date: DateTime.parse(map['date']),
+      category: Category.values.firstWhere((e) => e.name == map['category']),
+      description: map['description'],
+    );
   }
 }

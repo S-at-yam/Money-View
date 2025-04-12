@@ -8,7 +8,7 @@ import 'package:money_view/pages/home_page.dart';
 import 'package:money_view/pages/profile.dart';
 
 class TabPage extends StatefulWidget {
-  TabPage({super.key});
+  const TabPage({super.key});
 
   @override
   State<StatefulWidget> createState() {
@@ -17,7 +17,7 @@ class TabPage extends StatefulWidget {
 }
 
 class _TabPageState extends State<TabPage> {
-  int currentPageIndex = 2;
+  int currentPageIndex = 1;
 
   void _selectedTab(int index) {
     setState(() {
@@ -33,11 +33,9 @@ class _TabPageState extends State<TabPage> {
   Widget build(BuildContext context) {
     if (currentPageIndex == 0) {
       activePage = Charts();
-    } else if (currentPageIndex == 1) {
-      activePage = AddNew();
-    } else if (currentPageIndex == 3) {
+    } else if (currentPageIndex == 2) {
       activePage = History();
-    } else if (currentPageIndex == 4) {
+    } else if (currentPageIndex == 3) {
       activePage = Profile();
     } else {
       activePage = HomePage();
@@ -55,11 +53,7 @@ class _TabPageState extends State<TabPage> {
             label: 'Charts',
             backgroundColor: kColorScheme.onSecondaryContainer,
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.add),
-            label: 'Add',
-            backgroundColor: kColorScheme.onSecondaryContainer,
-          ),
+
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',

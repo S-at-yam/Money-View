@@ -6,12 +6,16 @@ class CustomTextInput extends StatelessWidget {
   final String labelText;
   final String? hintTextInput;
   final TextInputType? keyboard;
+  final bool? readOnlyProp;
+  final void Function()? onTap;
   const CustomTextInput({
     super.key,
     required this.textController,
     required this.labelText,
     this.hintTextInput,
     this.keyboard,
+    this.readOnlyProp,
+    this.onTap,
   });
 
   @override
@@ -19,13 +23,15 @@ class CustomTextInput extends StatelessWidget {
     return TextField(
       cursorHeight: 30,
       controller: textController,
-
+      maxLines: null,
+      readOnly: readOnlyProp ?? false,
+      onTap: onTap ?? () {},
       keyboardType: keyboard ?? TextInputType.name,
-      style: Theme.of(
-        context,
-      ).textTheme.bodyMedium!.copyWith(color: Colors.black),
+      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+        color: const Color.fromARGB(255, 75, 4, 4),
+      ),
       decoration: InputDecoration(
-        labelText: labelText,
+        label: Text(labelText, softWrap: true),
         labelStyle: TextStyle(color: kColorScheme.outline, fontSize: 20),
         hintText: hintTextInput ?? '',
 

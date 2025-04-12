@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:money_view/main.dart';
 import 'package:money_view/models/expense.dart';
+import 'package:money_view/pages/update_expense.dart';
 
 class CustomListTile extends StatelessWidget {
   final Expense expense;
@@ -14,7 +15,11 @@ class CustomListTile extends StatelessWidget {
       background: Container(color: Colors.red),
       child: ListTile(
         tileColor: kColorScheme.secondaryContainer,
-        onTap: () {},
+        onTap: () {
+          Navigator.of(
+            context,
+          ).push(MaterialPageRoute(builder: (ctx) => UpdateExpense()));
+        },
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         leading: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -46,7 +51,7 @@ class CustomListTile extends StatelessWidget {
           ),
         ),
         trailing: Text(
-          '₹' + expense.amount.toString(),
+          '₹${expense.amount}',
           style: TextStyle(
             color: kColorScheme.onSecondaryContainer,
             fontSize: 15,
