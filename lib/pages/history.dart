@@ -29,6 +29,7 @@ class _HistoryState extends State<History> {
 
     return Scaffold(
       appBar: AppBar(title: Text('History')),
+      backgroundColor: const Color.fromARGB(255, 105, 171, 224),
       body: FutureBuilder(
         future: _fetchExpensesFuture, // ✅ Uses stored future
         builder: (context, snapshot) {
@@ -45,7 +46,10 @@ class _HistoryState extends State<History> {
             itemBuilder: (ctx, index) {
               return Padding(
                 padding: const EdgeInsets.fromLTRB(10, 3, 8, 2),
-                child: CustomListTile(expense: expenseProvider.expenses[index]),
+                child: CustomListTile(
+                  expense: expenseProvider.expenses[index],
+                  listColor: const Color.fromARGB(255, 16, 4, 73),
+                ),
               );
             },
           );

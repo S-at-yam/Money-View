@@ -6,6 +6,8 @@ import 'package:money_view/pages/history.dart';
 
 import 'package:money_view/pages/home_page.dart';
 import 'package:money_view/pages/profile.dart';
+import 'package:money_view/provider/profile_provider.dart';
+import 'package:provider/provider.dart';
 
 class TabPage extends StatefulWidget {
   const TabPage({super.key});
@@ -17,6 +19,14 @@ class TabPage extends StatefulWidget {
 }
 
 class _TabPageState extends State<TabPage> {
+  @override
+  void initState() {
+    super.initState();
+    Future.microtask(
+      () => Provider.of<ProfileProvider>(context, listen: false).loadProfile(),
+    );
+  }
+
   int currentPageIndex = 1;
 
   void _selectedTab(int index) {

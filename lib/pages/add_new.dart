@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:money_view/main.dart';
@@ -25,6 +23,12 @@ class _AddNewState extends State<AddNew> {
   final _dateController = TextEditingController();
   Category _selectedCategory = Category.others;
   DateTime _selectedDate = DateTime.now();
+
+  @override
+  void initState() {
+    super.initState();
+    _dateController.text = dateForm(_selectedDate);
+  }
 
   @override
   void dispose() {
@@ -88,7 +92,6 @@ class _AddNewState extends State<AddNew> {
       setState(() {
         _selectedDate = pickedDate;
         _dateController.text = dateForm(_selectedDate);
-        log(_selectedDate.toString());
       });
     }
   }

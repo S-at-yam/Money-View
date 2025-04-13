@@ -28,17 +28,18 @@ class CustomTextInput extends StatelessWidget {
       onTap: onTap ?? () {},
       keyboardType: keyboard ?? TextInputType.name,
       style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-        color: const Color.fromARGB(255, 75, 4, 4),
+        color: const Color.fromARGB(255, 7, 7, 7),
       ),
       decoration: InputDecoration(
         label: Text(labelText, softWrap: true),
-        labelStyle: TextStyle(color: kColorScheme.outline, fontSize: 20),
+        labelStyle: TextStyle(color: Colors.black, fontSize: 20),
         hintText: hintTextInput ?? '',
 
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(10),
+          borderSide: BorderSide(color: Colors.black),
         ),
-        focusedBorder: OutlineInputBorder(borderSide: BorderSide(width: 2)),
+        focusedBorder: OutlineInputBorder(borderSide: BorderSide(width: 2.5)),
       ),
     );
   }

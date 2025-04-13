@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:money_view/provider/expense_provider.dart';
+import 'package:money_view/provider/profile_provider.dart'; // <-- import your ProfileProvider
 
 import 'package:money_view/tab.dart';
 import 'package:provider/provider.dart';
@@ -10,8 +11,13 @@ var kColorScheme = ColorScheme.fromSeed(
 
 void main() {
   runApp(
-    ChangeNotifierProvider(
-      create: (_) => ExpenseProvider(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => ExpenseProvider()),
+        ChangeNotifierProvider(
+          create: (_) => ProfileProvider(),
+        ), // <-- add this
+      ],
       child: MaterialApp(
         home: TabPage(),
         theme: ThemeData().copyWith(

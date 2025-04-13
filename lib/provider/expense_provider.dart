@@ -24,5 +24,39 @@ class ExpenseProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  double getTotalExpenseForCurrentMonth() {
+    final now = DateTime.now();
+    final currentMonthExpenses = _expenses.where(
+      (expense) =>
+          expense.date.month == now.month && expense.date.year == now.year,
+    );
+
+    return currentMonthExpenses.fold(0.0, (sum, item) => sum + item.amount);
+  }
+
+  int getDaysInMonth(int year, int month) {
+    // If month is December, next month is January of next year
+    if (month == 12) {
+      year += 1;
+      month = 1;
+    } else {
+      month += 1;
+    }
+
+    // Subtract one day from the first day of the next month
+    final lastDayOfMonth = DateTime(
+      year,
+      month,
+      1,
+    ).subtract(const Duration(days: 1));
+    return lastDayOfMonth.day;
+  }
+
+  Future<void> deleteExpenseById(String id) async {
+    await _dbHelper.deleteExpense(id);
+    _expenses.removeWhere((expense) => expense.id == id);
+    notifyListeners();
+  }
+
   // Add update/delete here if needed later
 }
