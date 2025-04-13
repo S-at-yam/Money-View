@@ -41,8 +41,8 @@ class _HomePageState extends State<HomePage> {
       return Scaffold(
         body: Center(
           child: Text(
-            'Kindly set ur profile first.',
-            style: TextStyle(color: Colors.black),
+            'Kindly add your profile first.',
+            style: TextStyle(color: Colors.black, fontSize: 20),
           ),
         ),
       );

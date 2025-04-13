@@ -35,7 +35,7 @@ class ExpenseDetailPage extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.all(20),
           decoration: BoxDecoration(
-            color: const Color.fromARGB(255, 11, 1, 54),
+            color: const Color.fromARGB(255, 5, 0, 27),
             borderRadius: BorderRadius.circular(20),
             boxShadow: [
               BoxShadow(
@@ -59,7 +59,7 @@ class ExpenseDetailPage extends StatelessWidget {
               detailTile("Title", expense.title),
               detailTile("Amount", '₹${expense.amount.toStringAsFixed(2)}'),
               detailTile("Date", '${expense.date.toLocal()}'.split(' ')[0]),
-              detailTile("Category", expense.category.name),
+              detailTile("Category", expense.category.name.toUpperCase()),
               if (expense.description != null &&
                   expense.description!.isNotEmpty)
                 detailTile("Description", expense.description!),

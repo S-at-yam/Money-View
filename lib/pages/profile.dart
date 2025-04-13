@@ -22,10 +22,18 @@ class Profile extends StatelessWidget {
                 MaterialPageRoute(builder: (_) => const ProfileEditPage()),
               );
             },
-            icon: const Icon(Icons.person_add),
+            style: ButtonStyle(
+              backgroundColor: WidgetStatePropertyAll(
+                const Color.fromARGB(255, 1, 32, 58),
+              ),
+            ),
+            icon: const Icon(
+              Icons.person_add,
+              color: Color.fromARGB(255, 248, 248, 247),
+            ),
             label: const Text(
               'Set up your profile',
-              style: TextStyle(color: Color.fromARGB(255, 117, 63, 1)),
+              style: TextStyle(color: Color.fromARGB(255, 247, 246, 246)),
             ),
           ),
         ),
