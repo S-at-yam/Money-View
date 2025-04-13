@@ -58,5 +58,13 @@ class ExpenseProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  // Add update/delete here if needed later
+  Future<void> updateExpense(Expense updatedExpense) async {
+    await _dbHelper.updateExpense(updatedExpense);
+
+    final index = _expenses.indexWhere((e) => e.id == updatedExpense.id);
+    if (index != -1) {
+      _expenses[index] = updatedExpense;
+      notifyListeners();
+    }
+  }
 }

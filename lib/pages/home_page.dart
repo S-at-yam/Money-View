@@ -39,7 +39,12 @@ class _HomePageState extends State<HomePage> {
 
     if (profile == null) {
       return Scaffold(
-        body: Center(child: Text('Kindly set ur profile first.')),
+        body: Center(
+          child: Text(
+            'Kindly set ur profile first.',
+            style: TextStyle(color: Colors.black),
+          ),
+        ),
       );
     }
     double _spentPercent =

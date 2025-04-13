@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:money_view/models/expense.dart';
-import 'package:money_view/pages/update_expense.dart';
+import 'package:money_view/pages/expense_detail_page.dart';
+
 import 'package:provider/provider.dart';
 import 'package:money_view/provider/expense_provider.dart';
 
@@ -46,10 +47,20 @@ class CustomListTile extends StatelessWidget {
       },
       child: ListTile(
         tileColor: listColor,
-        onTap: () {
-          Navigator.of(
-            context,
-          ).push(MaterialPageRoute(builder: (ctx) => UpdateExpense()));
+        onTap: () async {
+          final updated = await Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (ctx) => ExpenseDetailPage(expense: expense),
+            ),
+          );
+
+          if (updated == true) {
+            // Trigger UI update by refetching expenses if needed
+            Provider.of<ExpenseProvider>(
+              context,
+              listen: false,
+            ).fetchExpenses();
+          }
         },
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         leading: Column(
