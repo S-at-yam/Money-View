@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:money_view/models/expense.dart';
 import 'package:money_view/pages/expense_detail_page.dart';
@@ -13,6 +15,10 @@ class CustomListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final expenseId = expense.id;
+    if (expenseId == null || expenseId.isEmpty) {
+      log('expense id is not passed');
+    }
     return Dismissible(
       key: ValueKey(expense.id),
       direction: DismissDirection.endToStart,
@@ -27,7 +33,21 @@ class CustomListTile extends StatelessWidget {
         final deletedExpense = expense; // Keep a copy of the deleted expense
 
         // Delete from DB and provider
-        await provider.deleteExpenseById(expense.id!);
+        if (expenseId == null || expenseId.isEmpty) {
+          log('error in deleting');
+        } else {
+          log(expenseId);
+          try {
+            bool deleted = await provider.deleteExpenseById(expenseId);
+            if (deleted) {
+              log('success');
+            } else {
+              log('failed');
+            }
+          } catch (err) {
+            print('error');
+          }
+        }
 
         // Show SnackBar with Undo option
         ScaffoldMessenger.of(context).clearSnackBars();

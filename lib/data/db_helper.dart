@@ -64,6 +64,7 @@ class DBHelper {
       expense.toMap(),
       where: 'id = ?',
       whereArgs: [expense.id],
+      conflictAlgorithm: ConflictAlgorithm.replace,
     );
   }
 

@@ -1,4 +1,3 @@
-// lib/providers/expense_provider.dart
 import 'package:flutter/material.dart';
 import 'package:money_view/data/db_helper.dart';
 import 'package:money_view/models/expense.dart';
@@ -52,10 +51,15 @@ class ExpenseProvider with ChangeNotifier {
     return lastDayOfMonth.day;
   }
 
-  Future<void> deleteExpenseById(String id) async {
-    await _dbHelper.deleteExpense(id);
-    _expenses.removeWhere((expense) => expense.id == id);
-    notifyListeners();
+  Future<bool> deleteExpenseById(String id) async {
+    final removedRows = await _dbHelper.deleteExpense(id);
+
+    if (removedRows > 0) {
+      _expenses.removeWhere((expense) => expense.id == id);
+      notifyListeners();
+      return true;
+    }
+    return false;
   }
 
   Future<void> updateExpense(Expense updatedExpense) async {

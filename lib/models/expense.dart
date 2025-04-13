@@ -42,7 +42,7 @@ class Expense {
     required this.category,
     this.description,
     String? id,
-  }) : id = uuid.v4();
+  }) : id = id ?? uuid.v4();
 
   String get dateDay {
     return date.day.toString();
