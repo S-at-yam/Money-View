@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:money_view/main.dart';
 
 class CustomTextInput extends StatelessWidget {
   final TextEditingController textController;
