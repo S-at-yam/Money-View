@@ -80,4 +80,11 @@ class ExpenseProvider with ChangeNotifier {
     _data.addAll(chartData);
     notifyListeners();
   }
+
+  Future<void> barChartData() async {
+    final chartData = await _dbHelper.getDailyExpenses();
+    _data.clear();
+    _data.addAll(chartData);
+    notifyListeners();
+  }
 }

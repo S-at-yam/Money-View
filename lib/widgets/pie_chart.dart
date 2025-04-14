@@ -33,7 +33,8 @@ class _ExpensePieChartState extends State<ExpensePieChart> {
                 sections: List.generate(widget.data.length, (index) {
                   final item = widget.data[index];
                   final percentage = (item['total'] / total) * 100;
-                  final categoryName = item['category'].toUpperCase();
+                  var categoryName = item['category'];
+                  categoryName = categoryName.toString().toUpperCase();
 
                   return PieChartSectionData(
                     color: _getColor(index),
@@ -78,7 +79,7 @@ class _ExpensePieChartState extends State<ExpensePieChart> {
                     Container(width: 12, height: 12, color: _getColor(index)),
                     const SizedBox(width: 8),
                     Text(
-                      item['category'].toUpperCase(),
+                      item['category'].toString().toUpperCase(),
                       style: TextStyle(
                         fontSize: 16,
                         color: const Color.fromARGB(255, 66, 1, 1),

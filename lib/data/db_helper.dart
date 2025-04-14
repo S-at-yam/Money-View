@@ -76,4 +76,16 @@ class DBHelper {
     GROUP BY category
   ''');
   }
+
+  Future<List<Map<String, dynamic>>> getDailyExpenses() async {
+    final db = await database;
+
+    return await db.rawQuery('''
+    SELECT strftime('%d', date) as day, SUM(amount) as total
+    FROM expenses
+    WHERE strftime('%Y-%m', date) = strftime('%Y-%m', 'now')
+    GROUP BY day
+    ORDER BY day
+  ''');
+  }
 }
