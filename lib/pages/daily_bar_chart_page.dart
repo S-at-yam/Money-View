@@ -42,7 +42,7 @@ class _DailyBarChartPageState extends State<DailyBarChartPage> {
         );
 
         return Center(
-          child: Container(
+          child: SizedBox(
             height: MediaQuery.of(context).size.height * 0.79,
             width: MediaQuery.of(context).size.width * 0.99,
 

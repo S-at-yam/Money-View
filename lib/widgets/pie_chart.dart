@@ -25,9 +25,9 @@ class _ExpensePieChartState extends State<ExpensePieChart> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           // Pie chart widget
-          Container(
-            height: MediaQuery.of(context).size.height * 0.5, // Adjusted height
-            width: MediaQuery.of(context).size.width * 0.9, // Adjusted width
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.5,
+            width: MediaQuery.of(context).size.width * 0.9,
             child: PieChart(
               PieChartData(
                 sections: List.generate(widget.data.length, (index) {

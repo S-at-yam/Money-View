@@ -16,9 +16,7 @@ class CustomListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final expenseId = expense.id;
-    if (expenseId == null || expenseId.isEmpty) {
-      log('expense id is not passed');
-    }
+    if (expenseId == null || expenseId.isEmpty) {}
     return Dismissible(
       key: ValueKey(expense.id),
       direction: DismissDirection.endToStart,
@@ -44,7 +42,7 @@ class CustomListTile extends StatelessWidget {
               log('failed');
             }
           } catch (err) {
-            print('error');
+            log('error');
           }
         }
 

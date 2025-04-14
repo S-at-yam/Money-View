@@ -4,7 +4,7 @@ import 'package:money_view/models/expense.dart';
 
 class ExpenseProvider with ChangeNotifier {
   final List<Expense> _expenses = [];
-  List<Map<String, dynamic>> _data = [];
+  final List<Map<String, dynamic>> _data = [];
   final DBHelper _dbHelper = DBHelper();
 
   List<Expense> get expenses => _expenses;
@@ -36,7 +36,6 @@ class ExpenseProvider with ChangeNotifier {
   }
 
   int getDaysInMonth(int year, int month) {
-    // If month is December, next month is January of next year
     if (month == 12) {
       year += 1;
       month = 1;
@@ -44,7 +43,6 @@ class ExpenseProvider with ChangeNotifier {
       month += 1;
     }
 
-    // Subtract one day from the first day of the next month
     final lastDayOfMonth = DateTime(
       year,
       month,

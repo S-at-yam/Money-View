@@ -9,7 +9,7 @@ class ChartPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Container(
+      child: SizedBox(
         height: MediaQuery.of(context).size.height * 0.78,
         width: MediaQuery.of(context).size.width * 0.98,
 
