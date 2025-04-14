@@ -30,9 +30,8 @@ class CustomListTile extends StatelessWidget {
       ),
       onDismissed: (_) async {
         final provider = Provider.of<ExpenseProvider>(context, listen: false);
-        final deletedExpense = expense; // Keep a copy of the deleted expense
+        final deletedExpense = expense;
 
-        // Delete from DB and provider
         if (expenseId == null || expenseId.isEmpty) {
           log('error in deleting');
         } else {
@@ -49,7 +48,6 @@ class CustomListTile extends StatelessWidget {
           }
         }
 
-        // Show SnackBar with Undo option
         ScaffoldMessenger.of(context).clearSnackBars();
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
@@ -57,7 +55,6 @@ class CustomListTile extends StatelessWidget {
             action: SnackBarAction(
               label: "UNDO",
               onPressed: () async {
-                // Re-add the expense if undo is pressed
                 await provider.addExpense(deletedExpense);
               },
             ),
@@ -75,7 +72,6 @@ class CustomListTile extends StatelessWidget {
           );
 
           if (updated == true) {
-            // Trigger UI update by refetching expenses if needed
             Provider.of<ExpenseProvider>(
               context,
               listen: false,

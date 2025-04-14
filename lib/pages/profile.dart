@@ -11,7 +11,6 @@ class Profile extends StatelessWidget {
     final profile = context.watch<ProfileProvider>().profile;
 
     if (profile == null) {
-      // No profile yet — show setup button
       return Scaffold(
         appBar: AppBar(title: const Text('Your Profile')),
         body: Center(
@@ -40,7 +39,6 @@ class Profile extends StatelessWidget {
       );
     }
 
-    // Profile exists — show details
     return Scaffold(
       appBar: AppBar(
         title: const Text('Your Profile'),

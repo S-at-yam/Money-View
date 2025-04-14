@@ -100,7 +100,7 @@ class _HomePageState extends State<HomePage> {
                 child: Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Column(
                         children: [
@@ -215,9 +215,10 @@ class _HomePageState extends State<HomePage> {
                         alignment: Alignment.center,
                         children: [
                           SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.3,
-                            height: MediaQuery.of(context).size.width * 0.3,
+                            width: MediaQuery.of(context).size.width * 0.35,
+                            height: MediaQuery.of(context).size.width * 0.35,
                             child: CircularProgressIndicator(
+                              padding: EdgeInsets.only(right: 5),
                               value: spentPercent,
                               backgroundColor: Colors.white,
                               strokeWidth: 16,

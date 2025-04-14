@@ -64,7 +64,6 @@ class Expense {
     };
   }
 
-  // Create object from Map from SQLite
   factory Expense.fromMap(Map<String, dynamic> map) {
     return Expense(
       id: map['id'],

@@ -84,7 +84,7 @@ class _UpdateExpenseState extends State<UpdateExpense> {
     }
 
     final updatedExpense = Expense(
-      id: widget.expense.id, // Keep same ID
+      id: widget.expense.id,
       title: title,
       amount: double.parse(amountText),
       category: _selectedCategory,
@@ -102,7 +102,7 @@ class _UpdateExpenseState extends State<UpdateExpense> {
       ScaffoldMessenger.of(
         context,
       ).showSnackBar(const SnackBar(content: Text('Expense updated')));
-      Navigator.pop(context, true); // Return success to previous screen
+      Navigator.pop(context, true);
     });
   }
 

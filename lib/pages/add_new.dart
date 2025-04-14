@@ -68,7 +68,6 @@ class _AddNewState extends State<AddNew> {
               : _descController.text.trim(),
     );
 
-    // Use Provider to save
     Provider.of<ExpenseProvider>(
       context,
       listen: false,

@@ -1,10 +1,6 @@
-// lib/data/database/db_helper.dart
-
 import 'package:money_view/models/expense.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
-
-// Update with your actual path
 
 class DBHelper {
   static final DBHelper _instance = DBHelper._internal();
@@ -40,7 +36,6 @@ class DBHelper {
     );
   }
 
-  // CRUD Operations
   Future<int> insertExpense(Expense expense) async {
     final db = await database;
     return await db.insert(
@@ -71,5 +66,14 @@ class DBHelper {
   Future<int> deleteExpense(String id) async {
     final db = await database;
     return await db.delete('expenses', where: 'id = ?', whereArgs: [id]);
+  }
+
+  Future<List<Map<String, dynamic>>> getCategoryExpenses() async {
+    final db = await database;
+    return await db.rawQuery('''
+    SELECT category, SUM(amount) as total 
+    FROM expenses 
+    GROUP BY category
+  ''');
   }
 }

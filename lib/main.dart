@@ -14,9 +14,7 @@ void main() {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => ExpenseProvider()),
-        ChangeNotifierProvider(
-          create: (_) => ProfileProvider(),
-        ), // <-- add this
+        ChangeNotifierProvider(create: (_) => ProfileProvider()),
       ],
       child: MaterialApp(
         home: TabPage(),

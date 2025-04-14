@@ -17,7 +17,7 @@ class _HistoryState extends State<History> {
   @override
   void initState() {
     super.initState();
-    // Store the future ONCE
+
     _fetchExpensesFuture =
         Provider.of<ExpenseProvider>(context, listen: false).fetchExpenses();
   }
@@ -25,13 +25,12 @@ class _HistoryState extends State<History> {
   @override
   Widget build(BuildContext context) {
     final expenseProvider = Provider.of<ExpenseProvider>(context);
-    // final finExpenses = expenseProvider.expenses.reversed;
 
     return Scaffold(
       appBar: AppBar(title: Text('History')),
       backgroundColor: const Color.fromARGB(255, 105, 171, 224),
       body: FutureBuilder(
-        future: _fetchExpensesFuture, // ✅ Uses stored future
+        future: _fetchExpensesFuture,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());

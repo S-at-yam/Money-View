@@ -68,7 +68,7 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
       const SnackBar(content: Text('Profile updated successfully')),
     );
 
-    Navigator.pop(context); // Go back to view page
+    Navigator.pop(context);
   }
 
   void _showAvatarPicker(BuildContext context) {

@@ -4,9 +4,11 @@ import 'package:money_view/models/expense.dart';
 
 class ExpenseProvider with ChangeNotifier {
   final List<Expense> _expenses = [];
+  List<Map<String, dynamic>> _data = [];
   final DBHelper _dbHelper = DBHelper();
 
   List<Expense> get expenses => _expenses;
+  List<Map<String, dynamic>> get data => _data;
 
   Future<void> fetchExpenses() async {
     final data = await _dbHelper.getExpenses();
@@ -70,5 +72,12 @@ class ExpenseProvider with ChangeNotifier {
       _expenses[index] = updatedExpense;
       notifyListeners();
     }
+  }
+
+  Future<void> pieChartData() async {
+    final chartData = await _dbHelper.getCategoryExpenses();
+    _data.clear();
+    _data.addAll(chartData);
+    notifyListeners();
   }
 }
