@@ -19,7 +19,6 @@ class DailyBarChart extends StatelessWidget {
 
     final Map<int, double> dayTotals = {
       for (var row in dailyData)
-        // Only add the row if 'day' and 'total' are non-null
         if (row['day'] != null && row['total'] != null)
           int.parse(row['day']): row['total'] * 1.0,
     };
@@ -30,7 +29,6 @@ class DailyBarChart extends StatelessWidget {
       padding: const EdgeInsets.all(12.0),
       child: Column(
         children: [
-          // Chart heading
           Text(
             'Expenses in $mmm',
             style: const TextStyle(
@@ -41,7 +39,6 @@ class DailyBarChart extends StatelessWidget {
           ),
           const SizedBox(height: 16),
 
-          // Chart body
           AspectRatio(
             aspectRatio: 0.7,
             child: BarChart(
@@ -65,13 +62,6 @@ class DailyBarChart extends StatelessWidget {
                     ),
                   ),
                   bottomTitles: AxisTitles(
-                    // axisNameWidget: Text(
-                    //   mmm,
-                    //   style: const TextStyle(
-                    //     fontWeight: FontWeight.bold,
-                    //     color: Colors.black,
-                    //   ),
-                    // ),
                     sideTitles: SideTitles(
                       showTitles: true,
                       interval: maxDays > 15 ? 5 : 1,
