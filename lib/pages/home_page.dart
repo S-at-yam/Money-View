@@ -29,7 +29,7 @@ class _HomePageState extends State<HomePage> {
     final recentExpenses = expenseProvider.expenses.take(7).toList();
     final profile = context.watch<ProfileProvider>().profile;
 
-    double _expectedBudget =
+    double expectedBudget =
         (expenseProvider.getTotalExpenseForCurrentMonth() /
             DateTime.now().day) *
         expenseProvider.getDaysInMonth(
@@ -47,7 +47,7 @@ class _HomePageState extends State<HomePage> {
         ),
       );
     }
-    double _spentPercent =
+    double spentPercent =
         expenseProvider.getTotalExpenseForCurrentMonth() / profile.target;
 
     return Scaffold(
@@ -195,12 +195,12 @@ class _HomePageState extends State<HomePage> {
                                 ),
                                 const SizedBox(height: 2),
                                 Text(
-                                  _expectedBudget.toStringAsFixed(2),
+                                  expectedBudget.toStringAsFixed(2),
                                   style: TextStyle(
                                     fontSize: 30,
                                     fontWeight: FontWeight.bold,
                                     color:
-                                        profile.target > _expectedBudget
+                                        profile.target > expectedBudget
                                             ? Colors.green
                                             : Colors.red,
                                   ),
@@ -210,25 +210,25 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ],
                       ),
-
+                      const SizedBox(width: 5),
                       Stack(
                         alignment: Alignment.center,
                         children: [
                           SizedBox(
-                            width: 130,
-                            height: 130,
+                            width: MediaQuery.of(context).size.width * 0.3,
+                            height: MediaQuery.of(context).size.width * 0.3,
                             child: CircularProgressIndicator(
-                              value: _spentPercent,
+                              value: spentPercent,
                               backgroundColor: Colors.white,
                               strokeWidth: 16,
                               color:
-                                  _spentPercent > 0.8
+                                  spentPercent > 0.8
                                       ? const Color.fromARGB(255, 114, 3, 3)
                                       : const Color.fromARGB(255, 1, 82, 4),
                             ),
                           ),
                           Text(
-                            '${(_spentPercent * 100).toStringAsFixed(0)} %',
+                            '${(spentPercent * 100).toStringAsFixed(0)} %',
                             style: TextStyle(fontSize: 25),
                           ),
                         ],

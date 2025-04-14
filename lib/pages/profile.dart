@@ -59,7 +59,7 @@ class Profile extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
 
-        child: Container(
+        child: SizedBox(
           width: double.infinity,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
