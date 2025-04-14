@@ -11,9 +11,8 @@ class Charts extends StatelessWidget {
       backgroundColor: const Color.fromARGB(213, 132, 246, 250),
       body: Center(
         child: SizedBox(
-          height: MediaQuery.of(context).size.height * 0.79,
-          width: MediaQuery.of(context).size.width * 0.99,
-
+          height: 900,
+          width: 500,
           child: PageView(children: [CategoryCharts(), DailyBarChartPage()]),
         ),
       ),

@@ -16,83 +16,107 @@ class DailyBarChart extends StatelessWidget {
   Widget build(BuildContext context) {
     DateTime now = DateTime.now();
     String mmm = DateFormat('MMMM').format(now);
+
     final Map<int, double> dayTotals = {
-      for (var row in dailyData) int.parse(row['day']): row['total'] * 1.0,
+      for (var row in dailyData)
+        // Only add the row if 'day' and 'total' are non-null
+        if (row['day'] != null && row['total'] != null)
+          int.parse(row['day']): row['total'] * 1.0,
     };
 
     final int maxDays = daysOfMonth;
 
     return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Container(
-        height: MediaQuery.of(context).size.height * 0.5,
-        width: MediaQuery.of(context).size.width * 0.9,
-        child: BarChart(
-          BarChartData(
-            alignment: BarChartAlignment.spaceBetween,
-            barTouchData: BarTouchData(enabled: true),
-            titlesData: FlTitlesData(
-              leftTitles: AxisTitles(
-                sideTitles: SideTitles(
-                  showTitles: true,
-                  reservedSize: 30,
-                  getTitlesWidget:
-                      (value, _) => Text(
-                        '₹${value.toInt()}',
-                        style: const TextStyle(
-                          fontSize: 10,
-                          color: Color.fromARGB(255, 170, 3, 3),
-                        ),
-                      ),
-                ),
-              ),
-              bottomTitles: AxisTitles(
-                axisNameSize: 20,
-                axisNameWidget: Text(
-                  mmm,
-                  style: TextStyle(color: Colors.black),
-                ),
-                sideTitles: SideTitles(
-                  showTitles: true,
+      padding: const EdgeInsets.all(12.0),
+      child: Column(
+        children: [
+          // Chart heading
+          Text(
+            'Expenses in $mmm',
+            style: const TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: Colors.black87,
+            ),
+          ),
+          const SizedBox(height: 16),
 
-                  getTitlesWidget:
-                      (value, _) => Text(
-                        value.toInt().toString(),
-                        style: const TextStyle(
-                          fontSize: 5,
-                          color: Colors.black,
-                        ),
-                      ),
+          // Chart body
+          AspectRatio(
+            aspectRatio: 0.7,
+            child: BarChart(
+              BarChartData(
+                alignment: BarChartAlignment.spaceBetween,
+                barTouchData: BarTouchData(enabled: true),
+                titlesData: FlTitlesData(
+                  leftTitles: AxisTitles(
+                    sideTitles: SideTitles(
+                      showTitles: true,
+                      reservedSize: 32,
+
+                      getTitlesWidget:
+                          (value, _) => Text(
+                            '₹${value.toInt()}',
+                            style: const TextStyle(
+                              fontSize: 10,
+                              color: Color.fromARGB(255, 170, 3, 3),
+                            ),
+                          ),
+                    ),
+                  ),
+                  bottomTitles: AxisTitles(
+                    // axisNameWidget: Text(
+                    //   mmm,
+                    //   style: const TextStyle(
+                    //     fontWeight: FontWeight.bold,
+                    //     color: Colors.black,
+                    //   ),
+                    // ),
+                    sideTitles: SideTitles(
+                      showTitles: true,
+                      interval: maxDays > 15 ? 5 : 1,
+                      getTitlesWidget:
+                          (value, _) => Text(
+                            value.toInt().toString(),
+                            style: const TextStyle(
+                              fontSize: 8,
+                              color: Colors.black,
+                            ),
+                          ),
+                    ),
+                  ),
+                  topTitles: AxisTitles(
+                    sideTitles: SideTitles(showTitles: false),
+                  ),
+                  rightTitles: AxisTitles(
+                    sideTitles: SideTitles(showTitles: false),
+                  ),
                 ),
-              ),
-              topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
-              rightTitles: AxisTitles(
-                sideTitles: SideTitles(showTitles: false),
+                borderData: FlBorderData(show: false),
+                gridData: FlGridData(show: false),
+                barGroups: List.generate(maxDays, (index) {
+                  final day = index + 1;
+                  final total = dayTotals[day] ?? 0.0;
+
+                  return BarChartGroupData(
+                    x: day,
+                    barRods: [
+                      BarChartRodData(
+                        toY: total,
+                        width: 6,
+                        color:
+                            total > 0
+                                ? const Color.fromARGB(255, 0, 24, 65)
+                                : Colors.grey.shade300,
+                        borderRadius: BorderRadius.circular(4),
+                      ),
+                    ],
+                  );
+                }),
               ),
             ),
-            borderData: FlBorderData(show: false),
-            gridData: FlGridData(show: false),
-            barGroups: List.generate(maxDays, (index) {
-              final day = index + 1;
-              final total = dayTotals[day] ?? 0.0;
-
-              return BarChartGroupData(
-                x: day,
-                barRods: [
-                  BarChartRodData(
-                    toY: total,
-                    width: 6,
-                    color:
-                        total > 0
-                            ? const Color.fromARGB(255, 0, 24, 65)
-                            : Colors.grey.shade300,
-                    borderRadius: BorderRadius.circular(4),
-                  ),
-                ],
-              );
-            }),
           ),
-        ),
+        ],
       ),
     );
   }

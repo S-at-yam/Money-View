@@ -42,9 +42,8 @@ class _CategoryChartsState extends State<CategoryCharts> {
 
           return Center(
             child: SizedBox(
-              height: MediaQuery.of(context).size.height * 0.79,
-              width: MediaQuery.of(context).size.width * 0.99,
-
+              height: 900,
+              width: 500,
               child: ChartPage(
                 title: 'Expense by Category',
                 chart: ExpensePieChart(data: dataProvider.data),

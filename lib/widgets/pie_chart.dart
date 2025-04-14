@@ -1,6 +1,5 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'dart:core';
 
 class ExpensePieChart extends StatefulWidget {
   final List<Map<String, dynamic>> data;
@@ -8,9 +7,7 @@ class ExpensePieChart extends StatefulWidget {
   const ExpensePieChart({required this.data, super.key});
 
   @override
-  State<StatefulWidget> createState() {
-    return _ExpensePieChartState();
-  }
+  State<StatefulWidget> createState() => _ExpensePieChartState();
 }
 
 class _ExpensePieChartState extends State<ExpensePieChart> {
@@ -20,21 +17,20 @@ class _ExpensePieChartState extends State<ExpensePieChart> {
   Widget build(BuildContext context) {
     double total = widget.data.fold(0, (sum, item) => sum + item['total']);
 
-    return Center(
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          // Pie chart widget
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.5,
-            width: MediaQuery.of(context).size.width * 0.9,
+          // Chart inside AspectRatio for safe scaling
+          AspectRatio(
+            aspectRatio: 1,
             child: PieChart(
               PieChartData(
                 sections: List.generate(widget.data.length, (index) {
                   final item = widget.data[index];
                   final percentage = (item['total'] / total) * 100;
-                  var categoryName = item['category'];
-                  categoryName = categoryName.toString().toUpperCase();
+                  final categoryName =
+                      item['category'].toString().toUpperCase();
 
                   return PieChartSectionData(
                     color: _getColor(index),
@@ -67,29 +63,30 @@ class _ExpensePieChartState extends State<ExpensePieChart> {
             ),
           ),
 
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: List.generate(widget.data.length, (index) {
-                final item = widget.data[index];
-                return Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Container(width: 12, height: 12, color: _getColor(index)),
-                    const SizedBox(width: 8),
-                    Text(
-                      item['category'].toString().toUpperCase(),
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: const Color.fromARGB(255, 66, 1, 1),
-                        fontWeight: FontWeight.bold,
-                      ),
+          const SizedBox(height: 24),
+
+          // Legend section
+          Wrap(
+            spacing: 16,
+            runSpacing: 8,
+            children: List.generate(widget.data.length, (index) {
+              final item = widget.data[index];
+              return Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Container(width: 12, height: 12, color: _getColor(index)),
+                  const SizedBox(width: 6),
+                  Text(
+                    item['category'].toString().toUpperCase(),
+                    style: const TextStyle(
+                      fontSize: 14,
+                      color: Color.fromARGB(255, 66, 1, 1),
+                      fontWeight: FontWeight.bold,
                     ),
-                  ],
-                );
-              }),
-            ),
+                  ),
+                ],
+              );
+            }),
           ),
         ],
       ),
