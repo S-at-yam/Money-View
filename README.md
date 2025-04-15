@@ -33,7 +33,7 @@ Follow these steps to run the app locally:
    - Add recurring expenses
    - Notifications for overspending  
 
-## 🙌 Contributing
+## 🙌 Contribution
 
 Pull requests are welcome! If you’d like to add features, improve UI, or fix bugs, feel free to fork the repo and create a PR.
 
