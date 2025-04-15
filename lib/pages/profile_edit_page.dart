@@ -6,8 +6,8 @@ import 'package:money_view/widgets/custom_text_input.dart';
 import 'package:provider/provider.dart';
 
 final List<String> avatarOptions = [
-  'assets/avatar/male.png',
-  'assets/avatar/female.png',
+  'assets/avatar/male.webp',
+  'assets/avatar/female.webp',
 ];
 
 class ProfileEditPage extends StatefulWidget {
