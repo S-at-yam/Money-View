@@ -26,13 +26,15 @@ Follow these steps to run the app locally:
 
   -Just download and install the apk file on your android device and use.
 
-##🧩 Future Improvements
+## 🧩 Future Improvements
+
    - Add dark mode
    - Add export to CSV feature
    - Add recurring expenses
    - Notifications for overspending  
 
-##🙌 Contributing
+## 🙌 Contributing
+
 Pull requests are welcome! If you’d like to add features, improve UI, or fix bugs, feel free to fork the repo and create a PR.
 
 
